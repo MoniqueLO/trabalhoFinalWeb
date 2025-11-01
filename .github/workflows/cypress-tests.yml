@@ -1,0 +1,59 @@
+name: Testes Cypress
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  testes-cypress:
+    runs-on: ubuntu-latest
+    
+    strategy:
+      matrix:
+        node-version: [18.x]
+    
+    steps:
+    - name: Checkout do código
+      uses: actions/checkout@v4
+    
+    - name: Configurar Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+    
+    - name: Instalar dependências
+      run: npm ci
+    
+    - name: Executar testes Cypress
+      uses: cypress-io/github-action@v6
+      with:
+        browser: chrome
+        config-file: cypress.config.js
+    
+    - name: Upload dos vídeos dos testes
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: videos-testes-cypress
+        path: cypress/videos
+        retention-days: 7
+    
+    - name: Upload dos screenshots (falhas)
+      uses: actions/upload-artifact@v4
+      if: failure()
+      with:
+        name: screenshots-falhas-cypress
+        path: cypress/screenshots
+        retention-days: 7
+    
+    - name: Upload dos relatórios
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: relatorios-testes
+        path: cypress/reports
+        retention-days: 7
