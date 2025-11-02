@@ -6,10 +6,23 @@ yarn-error.log*
 
 cypress/videos/
 cypress/screenshots/
+cypress/reports/mochawesome/*.json
+cypress/reports/mochawesome/*.html
 
 .cache/
 
-# Exclua relatórios antigos, mas mantenha os diretórios
-cypress/reports/mochawesome/*.json
-cypress/reports/mochawesome/*.html
-cypress/reports/junit/*.xml
+# Arquivos de ambiente
+.env
+.env.local
+
+# Sistema Operacional
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~

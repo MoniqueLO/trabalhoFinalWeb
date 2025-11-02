@@ -43,21 +43,38 @@ Para executar a suíte de testes, use um dos seguintes comandos:
 
 ## 📊 Gerando Relatórios de Testes
 
-Este projeto está configurado para gerar relatórios de testes, úteis para pipelines de CI/CD.
+Este projeto utiliza **Mochawesome** para gerar relatórios HTML detalhados dos testes.
 
-1. **Execute os testes:**
+### Opção 1 - Executar testes e gerar relatório automaticamente:
+```bash
+npm run test:report
+```
+
+### Opção 2 - Gerar relatório a partir de testes já executados:
+1. Execute os testes:
    ```bash
    npm test
    ```
 
-2. **Localize os relatórios:**
-   - Os relatórios serão salvos no diretório `cypress/reports`
+2. Mescle os arquivos JSON:
+   ```bash
+   npm run report:merge
+   ```
 
-3. **Visualize os relatórios:**
-   - Abra o relatório HTML no seu navegador
+3. Gere o relatório HTML:
+   ```bash
+   npm run report:generate
+   ```
 
-4. **Use em CI/CD:**
-   - Os relatórios podem ser enviados como artefatos em pipelines de CI/CD
+### Visualizar o relatório:
+Após a geração, abra o arquivo:
+- `cypress/reports/mochawesome/report.html` no seu navegador
+
+O relatório incluirá:
+- ✅ Resumo de testes (passou/falhou)
+- 📊 Gráficos e estatísticas
+- 🖼️ Screenshots embutidos (em caso de falhas)
+- ⏱️ Tempo de execução de cada teste
 
 ## 📁 Estrutura do Projeto
 

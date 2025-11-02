@@ -7,16 +7,16 @@ module.exports = defineConfig({
     baseUrl: 'https://automationexercise.com',
     reporter: "cypress-multi-reporters", 
     reporterOptions: {
-      reporterEnabled: "mochawesome, mocha-junit-reporter", 
+      reporterEnabled: "mochawesome", 
       mochawesomeReporterOptions: {
         reportDir: "cypress/reports/mochawesome", 
         overwrite: false,
-        html: true,
+        html: false,
         json: true,
-      },
-      mochaJunitReporterReporterOptions: {
-        mochaFile: "cypress/reports/junit/junit-[hash].xml", 
-        toConsole: true,
+        charts: true,
+        reportPageTitle: 'Relatório de Testes - Automation Exercise',
+        embeddedScreenshots: true,
+        inlineAssets: true,
       },
     },
     setupNodeEvents(on, config) {

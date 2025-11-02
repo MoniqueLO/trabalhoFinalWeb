@@ -31,7 +31,7 @@ jobs:
     - name: Executar testes Cypress
       uses: cypress-io/github-action@v6
       with:
-        browser: chrome
+        browser: electron
         config-file: cypress.config.js
     
     - name: Upload dos vídeos dos testes
